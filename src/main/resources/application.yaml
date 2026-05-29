@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: demo
+  datasource:
+    url: jdbc:postgresql://localhost:5432/mydatabase
+    username: myuser
+    password: secret
+  ai:
+    vectorstore:
+      pgvector:
+        initialize-schema: true
+
+    ollama:
+      # Points directly to the native background service on your laptop
+      base-url: http://localhost:11434
+      
+      chat:
+        options:
+          model: deepseek-r1:1.5b
+      
+      embedding:
+        options:
+          model: nomic-embed-text
+      
+      init:
+        # Automatically downloads the models if your native system lacks them
+        pull-model-strategy: when_missing
+        timeout: 5m
